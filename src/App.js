@@ -6,6 +6,7 @@ import './App.css';
 import background from './moon.jpg';
 import Footer from './components/Footer/Footer';
 import Auth from './views/Auth/Auth';
+import UserView from './components/UserView/UserView';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
@@ -14,13 +15,14 @@ function App() {
     await signOut();
     setCurrentUser(null);
   };
+
   return (
     <div className="App" style={{ backgroundImage: `url(${background})` }}>
-      <h1>this is the home page</h1>
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Auth currentUser={currentUser} setCurrentUser={setCurrentUser} />
+            {currentUser && <UserView signOutUser={signOutUser} currentUser={currentUser} />}
+            {!currentUser && <Auth setCurrentUser={setCurrentUser} currentUser={currentUser} />}
             <Footer />
           </Route>
         </Switch>
