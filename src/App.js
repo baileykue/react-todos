@@ -1,4 +1,7 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { useState } from 'react';
+import { signOut, getUser } from './services/users';
+
 import './App.css';
 import background from './moon.jpg';
 import Footer from './components/Footer/Footer';
