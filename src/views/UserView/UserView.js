@@ -3,7 +3,7 @@ import Header from '../../components/Header/Header';
 import ToDo from '../../components/ToDo/ToDo';
 import { signOut } from '../../services/users';
 import { createToDo, fetchToDos } from '../../services/todos';
-import { deleteById } from '../../services/todos';
+//import { deleteById } from '../../services/todos';
 import './UserView.css';
 
 export default function UserView({ currentUser, setCurrentUser }) {
@@ -59,7 +59,7 @@ export default function UserView({ currentUser, setCurrentUser }) {
         onChange={(e) => setTask(e.target.value)}
       />
       <button onClick={handleSubmit}>Add</button>
-      <ToDo toDos={toDos} handleDelete={handleDelete} />
+      <ToDo toDos={toDos} setToDos={setToDos} handleDelete={handleDelete} />
     </div>
   );
 }
