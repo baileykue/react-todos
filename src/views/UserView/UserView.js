@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import ToDo from '../../components/ToDo/ToDo';
 import { signOut } from '../../services/users';
-import { createToDo, fetchToDos } from '../../services/todos';
-//import { deleteById } from '../../services/todos';
+import { createToDo, fetchToDos, updateToDo, deleteById } from '../../services/todos';
 import './UserView.css';
 
 export default function UserView({ currentUser, setCurrentUser }) {
@@ -36,11 +35,19 @@ export default function UserView({ currentUser, setCurrentUser }) {
     }
   };
 
-  const handleDelete = async () => {
+  const handleCheck = async (task) => {
+    await updateToDo(task.id, !task.is_complete);
+    setToDos((prevState) =>
+      prevState.map((todo) =>
+        todo.id === task.id ? { ...task, is_complete: !task.is_complete } : todo
+      )
+    );
+  };
+
+  const handleDelete = async (id) => {
     try {
-      //await deleteById();
+      await deleteById(id);
       alert('You have successfully removed this task!');
-      console.log('throw it in the trash');
     } catch {
       alert('Something went wrong! Please try again.');
     }
@@ -59,7 +66,12 @@ export default function UserView({ currentUser, setCurrentUser }) {
         onChange={(e) => setTask(e.target.value)}
       />
       <button onClick={handleSubmit}>Add</button>
-      <ToDo toDos={toDos} setToDos={setToDos} handleDelete={handleDelete} />
+      <ToDo
+        toDos={toDos}
+        setToDos={setToDos}
+        handleDelete={handleDelete}
+        handleCheck={handleCheck}
+      />
     </div>
   );
 }
