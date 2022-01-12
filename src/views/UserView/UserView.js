@@ -4,6 +4,7 @@ import ToDo from '../../components/ToDo/ToDo';
 import { signOut } from '../../services/users';
 import { createToDo, fetchToDos, updateToDo, deleteById } from '../../services/todos';
 import './UserView.css';
+import ToDoControls from '../../components/ToDoControls/ToDoControls';
 
 export default function UserView({ currentUser, setCurrentUser }) {
   const [toDos, setToDos] = useState([]);
@@ -58,14 +59,7 @@ export default function UserView({ currentUser, setCurrentUser }) {
   return (
     <div className="user-view">
       <Header signOutUser={signOutUser} currentUser={currentUser} />
-      <h2>Welcome User! We are happy you are here.</h2>
-      <input
-        type="text"
-        placeholder="add a to do"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-      />
-      <button onClick={handleSubmit}>Add</button>
+      <ToDoControls task={task} setTask={setTask} handleSubmit={handleSubmit} />
       <ToDo
         toDos={toDos}
         setToDos={setToDos}
