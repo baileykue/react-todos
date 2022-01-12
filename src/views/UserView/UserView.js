@@ -7,15 +7,13 @@ import './UserView.css';
 
 export default function UserView({ currentUser, setCurrentUser }) {
   const [toDos, setToDos] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   const [task, setTask] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchToDos();
       setToDos(data);
-      console.log(data);
       setLoading(false);
     };
     fetchData();
@@ -28,7 +26,9 @@ export default function UserView({ currentUser, setCurrentUser }) {
 
   const handleSubmit = async () => {
     try {
-      await createToDo(task);
+      const [resp] = await createToDo(task);
+      setToDos((prevState) => [...prevState, resp]);
+      setTask('');
       alert('You have successfully added a todo!');
     } catch {
       alert('Something went wrong! Please try again');
@@ -41,7 +41,12 @@ export default function UserView({ currentUser, setCurrentUser }) {
     <div className="user-view">
       <Header signOutUser={signOutUser} currentUser={currentUser} />
       <h2>Welcome User! We are happy you are here.</h2>
-      <input type="text" placeholder="add a to do" onChange={(e) => setTask(e.target.value)} />
+      <input
+        type="text"
+        placeholder="add a to do"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+      />
       <button onClick={handleSubmit}>Add</button>
       <ToDo toDos={toDos} />
     </div>
