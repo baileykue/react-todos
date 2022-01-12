@@ -48,6 +48,7 @@ export default function UserView({ currentUser, setCurrentUser }) {
   const handleDelete = async (id) => {
     try {
       await deleteById(id);
+      setToDos(toDos.filter((i) => i.id !== id));
       alert('You have successfully removed this task!');
     } catch {
       alert('Something went wrong! Please try again.');
