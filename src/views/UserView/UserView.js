@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import ToDo from '../../components/ToDo/ToDo';
 import { signOut } from '../../services/users';
 import { createToDo, fetchToDos } from '../../services/todos';
+import { deleteById } from '../../services/todos';
 import './UserView.css';
 
 export default function UserView({ currentUser, setCurrentUser }) {
@@ -35,6 +36,16 @@ export default function UserView({ currentUser, setCurrentUser }) {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      //await deleteById();
+      alert('You have successfully removed this task!');
+      console.log('throw it in the trash');
+    } catch {
+      alert('Something went wrong! Please try again.');
+    }
+  };
+
   if (loading) return <h3>Loading to dos...</h3>;
 
   return (
@@ -48,7 +59,7 @@ export default function UserView({ currentUser, setCurrentUser }) {
         onChange={(e) => setTask(e.target.value)}
       />
       <button onClick={handleSubmit}>Add</button>
-      <ToDo toDos={toDos} />
+      <ToDo toDos={toDos} handleDelete={handleDelete} />
     </div>
   );
 }
