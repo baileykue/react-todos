@@ -12,8 +12,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  border: 2px solid black;
+  margin: 5px;
 }
 
-input:checked + .checkbox {
-  text-decoration: line-through;
+.title {
+  text-decoration: underline;
+  margin-bottom: 5px;
 }
+
+/* li + input[type='checkbox']:checked {
+  text-decoration: line-through;
+} */
