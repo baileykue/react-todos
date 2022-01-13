@@ -2,8 +2,8 @@ import './Footer.css';
 
 export default function Footer() {
   return (
-    <footer>
-      <h3>this is the footer</h3>
+    <footer className="footer">
+      <h3>you will accomplish all that you set out to do</h3>
     </footer>
   );
 }

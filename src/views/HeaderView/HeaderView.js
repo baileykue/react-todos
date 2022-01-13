@@ -1,6 +1,6 @@
 import { signOut } from '../../services/users';
-import { useState } from 'react';
 import Header from '../../components/Header/Header';
+import './HeaderView.css';
 
 export default function HeaderView({ currentUser, setCurrentUser, type, setType }) {
   const signOutUser = async () => {
@@ -8,7 +8,7 @@ export default function HeaderView({ currentUser, setCurrentUser, type, setType 
     setCurrentUser(null);
   };
   return (
-    <div>
+    <div className="header-view">
       <Header type={type} setType={setType} currentUser={currentUser} signOutUser={signOutUser} />
     </div>
   );
