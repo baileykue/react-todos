@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { signInUser, signUpUser } from '../../services/users';
-import Header from '../../components/Header/Header';
 import AuthForm from '../../components/AuthForm/AuthForm';
 
-export default function Auth({ currentUser, setCurrentUser }) {
-  const [type, setType] = useState('signin');
+export default function Auth({ type, setCurrentUser }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,7 +22,6 @@ export default function Auth({ currentUser, setCurrentUser }) {
 
   return (
     <>
-      <Header type={type} setType={setType} currentUser={currentUser} />
       <AuthForm
         email={email}
         setEmail={setEmail}

@@ -3,7 +3,7 @@ import trash from './trash.png';
 
 export default function ToDo({ toDos, handleCheck, handleDelete }) {
   return (
-    <div>
+    <div className="to-do">
       <h3>Your To Do List</h3>
       <ul>
         {toDos.map((toDo) => (

@@ -7,17 +7,25 @@ import background from './rocks.jpg';
 import Footer from './components/Footer/Footer';
 import Auth from './views/Auth/Auth';
 import UserView from './views/UserView/UserView';
+import HeaderView from './views/HeaderView/HeaderView';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
+  const [type, setType] = useState('signin');
 
   return (
     <div className="App" style={{ backgroundImage: `url(${background})` }}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {currentUser && <UserView currentUser={currentUser} setCurrentUser={setCurrentUser} />}
-            {!currentUser && <Auth setCurrentUser={setCurrentUser} currentUser={currentUser} />}
+            <HeaderView
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              type={type}
+              setType={setType}
+            />
+            {currentUser && <UserView />}
+            {!currentUser && <Auth setCurrentUser={setCurrentUser} type={type} />}
             <Footer />
           </Route>
         </Switch>

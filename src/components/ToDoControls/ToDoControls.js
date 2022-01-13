@@ -2,7 +2,7 @@ import './ToDoControls.css';
 
 export default function ToDoControls({ task, setTask, handleSubmit }) {
   return (
-    <div>
+    <div className="controls">
       <h2>Welcome User! We are happy you are here.</h2>
       <input
         type="text"

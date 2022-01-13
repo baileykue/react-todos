@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-import Header from '../../components/Header/Header';
 import ToDo from '../../components/ToDo/ToDo';
-import { signOut } from '../../services/users';
 import { createToDo, fetchToDos, updateToDo, deleteById } from '../../services/todos';
-import './UserView.css';
 import ToDoControls from '../../components/ToDoControls/ToDoControls';
 
-export default function UserView({ currentUser, setCurrentUser }) {
+export default function UserView() {
   const [toDos, setToDos] = useState([]);
   const [task, setTask] = useState('');
   const [loading, setLoading] = useState(true);
@@ -19,11 +16,6 @@ export default function UserView({ currentUser, setCurrentUser }) {
     };
     fetchData();
   }, []);
-
-  const signOutUser = async () => {
-    await signOut();
-    setCurrentUser(null);
-  };
 
   const handleSubmit = async () => {
     try {
@@ -59,7 +51,6 @@ export default function UserView({ currentUser, setCurrentUser }) {
 
   return (
     <div className="user-view">
-      <Header signOutUser={signOutUser} currentUser={currentUser} />
       <ToDoControls task={task} setTask={setTask} handleSubmit={handleSubmit} />
       <ToDo
         toDos={toDos}
